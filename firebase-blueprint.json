@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile containing body metrics, age, weight, height and nutritional targets",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "gender": { "type": "string" },
+        "age": { "type": "number" },
+        "height": { "type": "number" },
+        "currentWeight": { "type": "number" },
+        "targetWeight": { "type": "number" },
+        "weeklyGoal": { "type": "number" },
+        "activityLevel": { "type": "string" },
+        "dietType": { "type": "string" },
+        "targetCalories": { "type": "number" },
+        "targetProtein": { "type": "number" },
+        "targetFat": { "type": "number" },
+        "targetCarbs": { "type": "number" },
+        "targetFiber": { "type": "number" },
+        "targetWater": { "type": "number" },
+        "streakDays": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "age", "height", "currentWeight"]
+    },
+    "NutritionistChat": {
+      "title": "Nutritionist Chat Session",
+      "description": "Saved AI nutritionist conversation session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "messages": { "type": "array" }
+      },
+      "required": ["id", "title"]
+    },
+    "Meal": {
+      "title": "Meal Log",
+      "description": "Meal entry logged by user with optional food image",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "calories": { "type": "number" },
+        "protein": { "type": "number" },
+        "fat": { "type": "number" },
+        "carbs": { "type": "number" },
+        "fiber": { "type": "number" },
+        "portionGrams": { "type": "number" },
+        "time": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "aiAnalysis": { "type": "string" }
+      },
+      "required": ["id", "userId", "date", "title", "calories"]
+    },
+    "WeightLog": {
+      "title": "Weight Log Entry",
+      "description": "Weight measurement entry tracking weight loss/gain progress",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "weight": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "date", "weight"]
+    },
+    "WorkoutLog": {
+      "title": "Workout Activity Log",
+      "description": "Workout activity and burned calories entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "title": { "type": "string" },
+        "durationMinutes": { "type": "number" },
+        "caloriesBurned": { "type": "number" },
+        "time": { "type": "string" }
+      },
+      "required": ["id", "userId", "date", "title", "caloriesBurned"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User account profile and metrics"
+    },
+    "/meals/{mealId}": {
+      "schema": { "$ref": "#/entities/Meal" },
+      "description": "Logged meals with food photos"
+    },
+    "/weight_logs/{logId}": {
+      "schema": { "$ref": "#/entities/WeightLog" },
+      "description": "Weight logs tracking progress over time"
+    },
+    "/workouts/{workoutId}": {
+      "schema": { "$ref": "#/entities/WorkoutLog" },
+      "description": "Logged workout activities and burned calories"
+    },
+    "/nutritionist_chats/{chatId}": {
+      "schema": { "$ref": "#/entities/NutritionistChat" },
+      "description": "AI nutritionist conversation sessions"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh; /* fallback for Safari <15.4 without dvh */
+  min-height: 100dvh;
+  background-color: #FAF8F5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  height: 100%;
+  min-height: 100vh; /* fallback for Safari <15.4 without dvh */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full-height shell with fallback for Safari <15.4 (no dvh).
+   Order matters: old Safari drops the unknown declaration and uses vh. */
+.h-dvh-fallback {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Safe area utilities for mobile devices */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-top-padding {
+  padding-top: max(env(safe-area-inset-top, 0px), 14px);
+}
+
+.safe-bottom-padding {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+}
+
+.safe-bottom-nav {
+  bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+}
+
+/* Prevent iOS Safari auto-zoom on input/textarea focus */
+@media screen and (max-width: 767px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* ─── Desktop stage decor (xl+ only, zero effect on mobile) ─── */
+.desktop-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 75%);
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-drift-slow {
+  animation: drift 14s ease-in-out infinite;
+}
+
+.animate-drift-slower {
+  animation: drift 20s ease-in-out infinite reverse;
+}
+
+.animate-float {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floaty 6.5s ease-in-out 1.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift-slow,
+  .animate-drift-slower,
+  .animate-float,
+  .animate-float-delayed {
+    animation: none;
+  }
+}
+
+
+

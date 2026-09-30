@@ -1,0 +1,67 @@
+# ─── Privacy: secrets and personal data ───
+# Never commit env files (they hold Supabase / Gemini / Google keys)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.pem
+*.key
+*.p12
+serviceAccount*.json
+*-service-account.json
+
+# ─── Local DB with REAL users (PII: names, email, weight, base64 photos) ───
+# data/db.json is currently ~660KB and contains real people, including a minor.
+# It is the Express server dev fallback and does not belong on GitHub.
+data/
+*.sqlite
+*.sqlite3
+*.db
+
+# ─── Dependencies and build ───
+node_modules/
+dist/
+build/
+.vercel/
+.netlify/
+vite.config.ts.timestamp-*
+
+# TypeScript / Vite cache (may contain absolute local paths)
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+vite-env.d.ts.timestamp-*
+
+# ─── Logs and temp files ───
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun.lockb
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+.test-*.json
+
+# ─── IDE ───
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# ─── Supabase CLI (local creds), committing SCHEMA migrations is OK ───
+.supabase/
+supabase/.branches/
+supabase/.temp/
+supabase/config.toml.bak
+
+# ─── OS ───
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
