@@ -1,5 +1,7 @@
 # Foodvisor — AI Nutrition Diary & Macro Tracker
 
+## 🌐 Live demo: https://saa-s-product-portfolio.vercel.app/
+
 > Personal calorie tracker, food scanner from photo, and AI nutritionist.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
